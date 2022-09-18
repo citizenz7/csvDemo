@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+<style>
+    #cities {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #cities td,
+    #cities th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #cities tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #cities tr:hover {
+        background-color: #ddd;
+    }
+
+    #cities th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+</style>
+
+<h1>Toutes les villes de la Nièvre</h1>
+<h4>Source : https://www.data.gouv.fr/fr/datasets/villes-de-france/</h4>
+
+<table id="cities">
+    <th>Code Insee</th>
+    <th>code postal</th>
+    <th>Nom de la ville</th>
+    <th>Numéro du département</th>
+    <th>Nom du département</th>
+    <th>Région</th>
+
+    {% for city in cities58 %}
+        {#
+            <p>Code insee : {{ city.inseeCode|capitalize }}</p>
+            <p>Code postal : {{ city.zipCode|capitalize }}</p>
+            <p>Nom de la ville : {{ city.cityCode|capitalize }}</p>
+            <p>Nom et numéro du département : {{ city.departmentName|capitalize }} ({{ city.departmentNumber }})</p>
+            <p>Région : {{ city.regionGeojson }}</p>
+        #}
+
+        <tr>
+            <td>{{ city.inseeCode|capitalize }}</td>
+            <td>{{ city.zipCode|capitalize }}</td>
+            <td>{{ city.cityCode|capitalize }}</td>
+            <td>{{ city.departmentNumber }}</td>
+            <td>{{ city.departmentName|capitalize }}</td>
+            <td>{{ city.regionGeojson }}</td>
+        </tr>
+
+    {% endfor %}
+</table>
+
+{% endblock %}
